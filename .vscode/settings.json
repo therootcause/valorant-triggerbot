@@ -1,0 +1,82 @@
+{
+  /**
+   * Workbench
+   **/
+
+  "workbench.colorTheme": "One Dark Pro Night Flat",
+  "workbench.iconTheme": "material-icon-theme",
+
+  /**
+   * Editor
+   **/
+
+  "editor.bracketPairColorization.enabled": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always"
+  },
+  "editor.codeLens": true,
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.defaultFormatter": "rust-lang.rust-analyzer",
+  "editor.fontFamily": "Fira Code",
+  "editor.fontLigatures": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "editor.guides.bracketPairs": true,
+  "editor.linkedEditing": true,
+  "editor.minimap.enabled": false,
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "editor.renderWhitespace": "none",
+  "editor.smoothScrolling": true,
+  "editor.stickyScroll.enabled": false,
+  "editor.tabSize": 2,
+  "editor.unicodeHighlight.includeStrings": false,
+
+  /**
+   * File Management
+   **/
+
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "files.autoSave": "afterDelay",
+  "files.trimTrailingWhitespace": true,
+
+  /**
+   * Explorer
+   **/
+
+  "explorer.compactFolders": false,
+  "explorer.decorations.badges": true,
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.sortOrder": "type",
+  "explorer.sortOrderLexicographicOptions": "lower",
+
+  /**
+   * Terminal
+   **/
+
+  "terminal.integrated.allowChords": true,
+  "terminal.integrated.fontFamily": "Fira Code",
+  "terminal.integrated.sendKeybindingsToShell": true,
+  "terminal.integrated.smoothScrolling": true,
+
+  /**
+   * Git
+   **/
+
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+
+  /**
+   * Language Specific
+   **/
+
+  "[markdown]": {
+    "editor.wordWrap": "off"
+  },
+}
