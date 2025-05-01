@@ -82,7 +82,7 @@ If you prefer to build the application yourself, follow these steps:
 # Support
 If you encounter issues or have questions, you can:
 - Check the [Troubleshooting](#troubleshooting) and [FAQ](#faq) sections below.
-- Message me on [discord](https://discord.com/users/313738210729656332) (lencydev).
+- Message me on [discord](https://discord.com/users/313738210729656332).
 
 ## Troubleshooting
 - **Triggerbot not firing:**
