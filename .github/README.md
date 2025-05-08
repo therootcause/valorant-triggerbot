@@ -7,7 +7,7 @@
   <a href = "https://github.com/lencydev/valorant-triggerbot/forks?include=active,archived,inactive,network&page=1&period=&sort_by=last_updated"><img src = "https://img.shields.io/github/forks/lencydev/valorant-triggerbot?style=flat-square&color=5864F9" alt = "Forks" /></a>
   <a href = "https://github.com/lencydev/valorant-triggerbot/stargazers"><img src = "https://img.shields.io/github/stars/lencydev/valorant-triggerbot?style=flat-square&color=5864F9" alt = "Stars" /></a>
   <br />
-  <a href = "https://ko-fi.com/lencydev"><img src = "https://img.shields.io/badge/Supports%20on%20Ko--fi-FF6433?logo=ko-fi&logoColor=FFF&style=flat-square" alt = "Ko-fi" /></a>
+  <a href = "https://ko-fi.com/lencydev"><img src = "https://img.shields.io/badge/Ko--fi-FF6433?logo=ko-fi&logoColor=FFF&style=flat-square" alt = "Ko-fi" /></a>
 </div>
 
 ## Features
@@ -109,6 +109,12 @@ The triggerbot operates on a simple principle:
 2. It analyzes the pixels within this captured area.
 3. If it finds pixels matching the configured `Target Color` (within the specified `Color Tolerance`), it assumes an enemy is under the crosshair.
 4. After waiting for the configured `Trigger Delay`, it simulates a key press (`K` by default) to make the game fire.
+
+<hr />
+
+<div align = "center">
+  <img src = "https://github.com/user-attachments/assets/98ce95a5-3fde-4bdb-b9b1-54825743a556" alt = "GUI" />
+</div>
 
 <hr />
 
