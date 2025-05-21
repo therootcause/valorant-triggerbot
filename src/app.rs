@@ -34,12 +34,12 @@ impl Default for Settings {
   fn default() -> Self {
     Self {
       resolution: Resolution {
-        width: 1920,
-        height: 1080,
+        width: 3840,
+        height: 2160,
       },
       trigger_keys: vec![TriggerKey::Keyboard(Keycode::LShift)],
       trigger_delay: 50,
-      trigger_area: 5.0,
+      trigger_area: 10.0,
       target_color: [240, 90, 255],
       color_tolerance: 50,
       always_open: false,
@@ -118,10 +118,7 @@ impl Triggerbot {
           TriggerKey::Mouse(button) => button.is_pressed(),
         });
 
-    if self.enabled
-      && (trigger_active || self.settings.always_open)
-      && self.is_target_color_present()
-    {
+    if self.enabled && (trigger_active || self.settings.always_open) && self.should_trigger() {
       self.enigo.key_click(Key::Layout('k'));
 
       if self.settings.trigger_delay > 0 {
@@ -130,7 +127,7 @@ impl Triggerbot {
     }
   }
 
-  fn is_target_color_present(&self) -> bool {
+  fn should_trigger(&self) -> bool {
     let (width, height) = (
       self.settings.resolution.width,
       self.settings.resolution.height,
@@ -139,22 +136,54 @@ impl Triggerbot {
     let x = (self.trigger_area.x_percent * width as f32) as i32;
     let y = (self.trigger_area.y_percent * height as f32) as i32;
     let w = (self.trigger_area.width_percent * width as f32) as u32;
-    let h = (self.trigger_area.height_percent * height as f32) as u32;
+    let h = 1 as u32;
 
     let capture = self.screen.capture_area(x, y, w, h).unwrap();
-
     let pixels = capture.pixels();
 
-    let matching_pixels: Vec<_> = pixels
-      .filter(|p| {
-        p.0
-          .iter()
-          .zip(&self.settings.target_color)
-          .all(|(a, b)| ((*a as i32) - b).abs() <= self.settings.color_tolerance)
-      })
-      .collect();
+    let capture_width = w as usize;
+    let center_x = capture_width / 2;
 
-    !matching_pixels.is_empty()
+    let mut left_found = false;
+    let mut right_found = false;
+    let mut left_pos = capture_width;
+    let mut right_pos = 0;
+    let mut pixelindex = 0;
+
+    pixels.clone().for_each(|pixel| {
+      // Compare each channel with tolerance
+      if pixel
+        .0
+        .iter()
+        .zip(&self.settings.target_color)
+        .all(|(a, b)| ((*a as i32) - b).abs() <= self.settings.color_tolerance)
+      {
+        if pixelindex <= center_x {
+          left_found = true;
+          if pixelindex < left_pos {
+            left_pos = pixelindex;
+          }
+        }
+        if pixelindex >= center_x {
+          right_found = true;
+          if pixelindex > right_pos {
+            right_pos = pixelindex;
+          }
+        }
+      }
+
+      pixelindex += 1;
+    });
+
+    // NOTE: the left and right boundaries are unused.
+    // one might be tempted to move the mouse a number of pixels based on this information.
+    // doing so might get you banned.
+
+    if left_found && right_found {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   pub fn update_trigger_area(&mut self) {

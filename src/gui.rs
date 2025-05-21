@@ -88,7 +88,7 @@ pub fn build(app: &mut Triggerbot, ctx: &Context) {
 
           ui.label("Trigger Area:");
           if ui
-            .add(Slider::new(&mut app.settings.trigger_area, 5.0..=100.0))
+            .add(Slider::new(&mut app.settings.trigger_area, 5.0..=500.0))
             .changed()
           {
             app.update_trigger_area();
